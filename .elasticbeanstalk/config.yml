@@ -2,9 +2,13 @@ branch-defaults:
   main:
     environment: ES2TF-dev
     group_suffix: null
+environment-defaults:
+  ES2TF-dev:
+    branch: main
+    repository: ES2_TF
 global:
   application_name: ES2_TF
-  branch: main
+  branch: null
   default_ec2_keyname: aws-eb
   default_platform: Corretto 17 running on 64bit Amazon Linux 2023
   default_region: us-west-2
