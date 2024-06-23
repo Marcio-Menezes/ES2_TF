@@ -3,16 +3,16 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo Instalando dependências...
+      - echo "Instalando dependências..."
       - ./gradlew build
   build:
     commands:
-      - echo Construindo a aplicação...
+      - echo "Construindo a aplicação..."
       - ./gradlew assemble
   post_build:
     commands:
-      - echo Build concluído
-      - echo Arquivos construídos:
+      - echo "Build concluído"
+      - echo "Arquivos construídos:"
       - ls build/libs/
 
 artifacts:
