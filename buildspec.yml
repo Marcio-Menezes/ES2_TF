@@ -4,6 +4,7 @@ phases:
   install:
     commands:
       - echo "Instalando dependências..."
+      - chmod +x gradlew
       - ./gradlew build
   build:
     commands:
