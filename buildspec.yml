@@ -4,16 +4,17 @@ phases:
   install:
     commands:
       - echo Instalando dependências...
-      - npm install
+      - ./gradlew build
   build:
     commands:
       - echo Construindo a aplicação...
-      - npm run build
+      - ./gradlew assemble
   post_build:
     commands:
       - echo Build concluído
+      - echo Arquivos construídos:
+      - ls build/libs/
 
 artifacts:
   files:
-    - '**/*'
-  base-directory: build
+    - 'build/libs/*.jar'
