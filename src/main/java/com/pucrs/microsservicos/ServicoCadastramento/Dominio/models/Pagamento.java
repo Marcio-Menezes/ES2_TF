@@ -14,7 +14,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "PagamentoServCad")
+@Entity
 public class Pagamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -11,7 +11,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "AssinaturaServCad")
+@Entity
 public class Assinatura {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

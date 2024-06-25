@@ -1,0 +1,56 @@
+services:
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=engsoft2
+      - RABBITMQ_DEFAULT_PASS=engsoft2
+    networks:
+      - es2-network
+
+  servico-cadastramento:
+    build:
+      context: .
+      dockerfile: src/main/java/com/pucrs/microsservicos/ServicoCadastramento/Dockerfile
+    depends_on:
+      - rabbitmq
+    environment:
+      - spring.rabbitmq.host=rabbitmq
+      - spring.rabbitmq.port=5672
+      - spring.rabbitmq.username=engsoft2
+      - spring.rabbitmq.password=engsoft2
+    networks:
+      - es2-network
+
+  servico-pagamentos:
+    build:
+      context: .
+      dockerfile: src/main/java/com/pucrs/microsservicos/ServicoPagamentos/Dockerfile
+    depends_on:
+      - rabbitmq
+    environment:
+      - spring.rabbitmq.host=rabbitmq
+      - spring.rabbitmq.port=5672
+      - spring.rabbitmq.username=engsoft2
+      - spring.rabbitmq.password=engsoft2
+    networks:
+      - es2-network
+
+  servico-assinaturas-validas:
+    build:
+      context: .
+      dockerfile: src/main/java/com/pucrs/microsservicos/ServicoAssinaturasValidas/Dockerfile
+    depends_on:
+      - rabbitmq
+    environment:
+      - spring.rabbitmq.host=rabbitmq
+      - spring.rabbitmq.port=5672
+      - spring.rabbitmq.username=engsoft2
+      - spring.rabbitmq.password=engsoft2
+    networks:
+      - es2-network
+
+networks:
+  es2-network:

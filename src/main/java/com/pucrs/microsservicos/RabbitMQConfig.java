@@ -14,7 +14,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
     public static final String FANOUTEXCHANGENAME = "pagamentos.v1.payment-request";
-    public static final String QUEUENAME = "pagamentos.v1.payment-request.update-subscription";
+    public static final String QUEUE_CADASTRAMENTO = "pagamentos.cadastramento";
+    public static final String QUEUE_ASSINATURAS_VALIDAS = "pagamentos.assinaturasvalidas";
 
     @Bean
     public FanoutExchange fanoutExchange() {
@@ -22,13 +23,23 @@ public class RabbitMQConfig {
     }
 
     @Bean
-    public Queue queue() {
-        return new Queue(QUEUENAME);
+    public Queue cadastramentoQueue() {
+        return new Queue(QUEUE_CADASTRAMENTO);
     }
 
     @Bean
-    public Binding binding(Queue q, FanoutExchange f) {
-        return BindingBuilder.bind(q).to(f);
+    public Queue assinaturasValidasQueue() {
+        return new Queue(QUEUE_ASSINATURAS_VALIDAS);
+    }
+
+    @Bean
+    public Binding cadastramentoBinding(Queue cadastramentoQueue, FanoutExchange fanoutExchange) {
+        return BindingBuilder.bind(cadastramentoQueue).to(fanoutExchange);
+    }
+
+    @Bean
+    public Binding assinaturasValidasBinding(Queue assinaturasValidasQueue, FanoutExchange fanoutExchange) {
+        return BindingBuilder.bind(assinaturasValidasQueue).to(fanoutExchange);
     }
 
     @Bean

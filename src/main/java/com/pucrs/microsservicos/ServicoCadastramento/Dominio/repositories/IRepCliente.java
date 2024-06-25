@@ -1,6 +1,6 @@
-package com.pucrs.microsservicos.ServicoPagamentos.Dominio.repositories;
+package com.pucrs.microsservicos.ServicoCadastramento.Dominio.repositories;
 
-import com.pucrs.microsservicos.ServicoPagamentos.Dominio.models.Cliente;
+import com.pucrs.microsservicos.ServicoCadastramento.Dominio.models.Cliente;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

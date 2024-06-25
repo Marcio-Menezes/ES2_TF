@@ -1,6 +1,6 @@
-package com.pucrs.microsservicos.ServicoPagamentos.Dominio.repositories;
+package com.pucrs.microsservicos.ServicoCadastramento.Dominio.repositories;
 
-import com.pucrs.microsservicos.ServicoPagamentos.Dominio.models.Pagamento;
+import com.pucrs.microsservicos.ServicoCadastramento.Dominio.models.Pagamento;
 
 import java.util.List;
 

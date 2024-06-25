@@ -2,13 +2,8 @@ package com.pucrs.microsservicos.ServicoCadastramento.Dominio.services;
 
 import com.pucrs.microsservicos.ServicoCadastramento.Dominio.models.*;
 import com.pucrs.microsservicos.ServicoCadastramento.Dominio.repositories.*;
-import com.pucrs.microsservicos.ServicoPagamentos.Dominio.repositories.IRepAplicativo;
-import com.pucrs.microsservicos.ServicoPagamentos.Dominio.repositories.IRepAssinatura;
-import com.pucrs.microsservicos.ServicoPagamentos.Dominio.repositories.IRepCliente;
-import com.pucrs.microsservicos.ServicoPagamentos.Dominio.repositories.IRepPagamento;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -19,19 +14,19 @@ import java.util.stream.Collectors;
 @Service
 public class ServicoCadastramento {
     @Autowired
-    private IRepClienteServCad repCliente;
+    private IRepCliente repCliente;
 
     @Autowired
-    private IRepAssinaturaServCad repAssinatura;
+    private IRepAssinatura repAssinatura;
 
     @Autowired
-    private IRepPagamentoServCad repPagamento;
+    private IRepPagamento repPagamento;
 
     @Autowired
-    private IRepAplicativoServCad repAplicativo;
+    private IRepAplicativo repAplicativo;
 
 
-    public ServicoCadastramento(IRepClienteServCad repCliente, IRepAssinaturaServCad repAssinatura, IRepPagamentoServCad repPagamento, IRepAplicativoServCad repAplicativo) {
+    public ServicoCadastramento(IRepCliente repCliente, IRepAssinatura repAssinatura, IRepPagamento repPagamento, IRepAplicativo repAplicativo) {
         this.repCliente = repCliente;
         this.repAssinatura = repAssinatura;
         this.repPagamento = repPagamento;
