@@ -1,0 +1,105 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: es2tf-servico-pagamentos
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: es2tf-servico-pagamentos
+  template:
+    metadata:
+      labels:
+        app: es2tf-servico-pagamentos
+    spec:
+      containers:
+      - name: es2tf-servico-pagamentos
+        image: es2tf.azurecr.io/es2tf-servico-pagamentos:v1
+        ports:
+        - containerPort: 8080
+        env:
+        - name: ENV_VAR
+          value: "value"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: es2tf-servico-pagamentos-service
+spec:
+  selector:
+    app: es2tf-servico-pagamentos
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: es2tf-servico-cadastramento
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: es2tf-servico-cadastramento
+  template:
+    metadata:
+      labels:
+        app: es2tf-servico-cadastramento
+    spec:
+      containers:
+      - name: es2tf-servico-cadastramento
+        image: es2tf.azurecr.io/es2tf-servico-cadastramento:v1
+        ports:
+        - containerPort: 8080
+        env:
+        - name: ENV_VAR
+          value: "value"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: es2tf-servico-cadastramento-service
+spec:
+  selector:
+    app: es2tf-servico-cadastramento
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rabbitmq
+  template:
+    metadata:
+      labels:
+        app: rabbitmq
+    spec:
+      containers:
+      - name: rabbitmq
+        image: es2tf.azurecr.io/rabbitmq:v1
+        ports:
+        - containerPort: 8080
+        env:
+        - name: ENV_VAR
+          value: "value"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbitmq-service
+spec:
+  selector:
+    app: rabbitmq
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: LoadBalancer

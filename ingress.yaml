@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: es2tf-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /cadastramento
+        pathType: Prefix
+        backend:
+          service:
+            name: es2tf-servico-cadastramento-service
+            port:
+              number: 80
+      - path: /pagamentos
+        pathType: Prefix
+        backend:
+          service:
+            name: es2tf-servico-pagamentos-service
+            port:
+              number: 80
+      - path: /rabbitmq
+        pathType: Prefix
+        backend:
+          service:
+            name: rabbitmq-service
+            port:
+              number: 80
